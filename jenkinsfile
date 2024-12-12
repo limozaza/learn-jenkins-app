@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        INDEX_HTML = 'build/index.html'
+    }
+
+
     stages {
         stage('Build') {
             agent {
@@ -11,6 +16,17 @@ pipeline {
             }
             steps {
                 sh '''
+                    test -f $INDEX_HTML
+                    npm test
+                '''
+            }
+        }
+
+        stage('Test') {
+        
+            steps {
+                sh '''
+                    echo "Test stage"
                     ls -la
                     node --version
                     npm --version
