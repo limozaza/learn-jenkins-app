@@ -16,8 +16,12 @@ pipeline {
             }
             steps {
                 sh '''
-                    test -f $INDEX_HTML
-                    npm test
+                    ls -la
+                    node --version
+                    npm --version
+                    npm ci
+                    npm run build
+                    ls -la
                 '''
             }
         }
@@ -26,13 +30,8 @@ pipeline {
         
             steps {
                 sh '''
-                    echo "Test stage"
-                    ls -la
-                    node --version
-                    npm --version
-                    npm ci
-                    npm run build
-                    ls -la
+                    test -f $INDEX_HTML
+                    npm test
                 '''
             }
         }
