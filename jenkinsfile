@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         INDEX_HTML = 'build/index.html'
+        NETLIFY_SITE_ID = '5c1a5177-36a6-4af8-9167-9272eee77166'
     }
 
 
@@ -81,6 +82,7 @@ pipeline {
                 sh '''
                     npm install netlify-cli -g
                     netlify --version
+                    echo "Deploying to Netlify ID: $NETLIFY_SITE_ID"
                 '''
             }
         }
